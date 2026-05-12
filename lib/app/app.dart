@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:mydiet/app/data/repositories/alimento_repository.dart';
 import 'package:mydiet/app/pages/main_homepage.dart';
 import 'package:mydiet/app/theme/themecontroller.dart';
 import 'package:provider/provider.dart';
 
 
 class App extends StatelessWidget {
-  const App({super.key});
+  final AlimentoRepository alimentoRepository;
+  const App({super.key, required this.alimentoRepository});
+
 
   @override
   Widget build(BuildContext context) {

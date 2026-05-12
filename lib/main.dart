@@ -9,18 +9,16 @@ import 'package:mydiet/app/data/services/alimento_database.dart';
 import 'package:mydiet/app/data/services/refeicao_database.dart';
 
 void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
-    final objectBoxDatabase = await startObjectBox();
-  //TODO final foodDatabase = AlimentoDatabase(objectBoxDatabase: objectBoxDatabase);
+  final objectBoxDatabase = await startObjectBox();
+  TODO final foodDatabase = FoodDatabase(objectBoxDatabase: objectBoxDatabase);
   //TODO final mealDatabase = RefeicaoDatabase(objectBoxDatabase: objectBoxDatabase);
 
+  final alimentoRepository = AlimentoRepository(database: foodDatabase);
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => AlimentoRepository(),
-        ),
         ChangeNotifierProvider(
           create: (_) => RefeicaoRepository(),
         ),
@@ -28,7 +26,7 @@ void main() async {
           create: (_) => ThemeController()
           ),
       ],
-      child: App(),
+      child: App(alimentoRepository: alimentoRepository),
     ),
   );
 }
