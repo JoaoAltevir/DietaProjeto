@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mydiet/app/model/alimento.dart';
-import 'package:mydiet/app/model/refeicao.dart';
-import 'package:mydiet/app/repositories/alimento_repository.dart';
-import 'package:mydiet/app/repositories/refeicao_repository.dart';
+import 'package:mydiet/app/data/model/alimento.dart';
+import 'package:mydiet/app/data/model/refeicao.dart';
+import 'package:mydiet/app/data/repositories/alimento_repository.dart';
+import 'package:mydiet/app/data/repositories/refeicao_repository.dart';
 import 'package:mydiet/app/widgets/alimento_card_widget.dart';
 import 'package:provider/provider.dart';
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mydiet/app/app.dart';
+import 'package:mydiet/app/data/model/alimento.dart';
 import 'package:mydiet/app/data/repositories/alimento_repository.dart';
 import 'package:mydiet/app/data/repositories/refeicao_repository.dart';
 import 'package:mydiet/app/theme/themecontroller.dart';
@@ -12,22 +13,23 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final objectBoxDatabase = await startObjectBox();
-  TODO final foodDatabase = FoodDatabase(objectBoxDatabase: objectBoxDatabase);
   //TODO final mealDatabase = RefeicaoDatabase(objectBoxDatabase: objectBoxDatabase);
 
-  final alimentoRepository = AlimentoRepository(database: foodDatabase);
   runApp(
     MultiProvider(
       providers: [
+        Provider<FoodDatabase>(
+          create: (_) => FoodDatabase(objectBoxDatabase: objectBoxDatabase),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AlimentoRepository(database: context.read()),
+        ),
         ChangeNotifierProvider(
           create: (_) => RefeicaoRepository(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => ThemeController()
-          ),
+        ChangeNotifierProvider(create: (_) => ThemeController()),
       ],
-      child: App(alimentoRepository: alimentoRepository),
+      child: App(),
     ),
   );
 }
-

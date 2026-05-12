@@ -14,8 +14,8 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'app/model/entitys/alimento.entity.dart';
-import 'app/model/entitys/refeicao.entity.dart';
+import 'app/data/model/entitys/alimento.entity.dart';
+import 'app/data/model/entitys/refeicao.entity.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 

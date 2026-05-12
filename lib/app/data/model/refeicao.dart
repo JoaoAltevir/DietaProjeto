@@ -1,4 +1,4 @@
-import 'package:mydiet/app/model/alimento.dart';
+import 'package:mydiet/app/data/model/alimento.dart';
 
 class Refeicao {
   String id;
@@ -7,5 +7,11 @@ class Refeicao {
   List<Alimento> alimentoListaRefeicao;
   String periodoRefeicao;
 
-  Refeicao({this.id = '', required this.nomeRefeicao,required this.dataRefeicao,required this.alimentoListaRefeicao,required this.periodoRefeicao});
+  Refeicao({
+    this.id = '',
+    required this.nomeRefeicao,
+    required this.dataRefeicao,
+    required this.alimentoListaRefeicao,
+    required this.periodoRefeicao,
+  });
 }

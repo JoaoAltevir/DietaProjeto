@@ -3,8 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mydiet/app/pages/adicionar_alimento_page.dart';
 import 'package:mydiet/app/pages/adicionar_refeicao_page.dart';
 import 'package:mydiet/app/pages/mostrar_refeicoes_page.dart';
-import 'package:mydiet/app/repositories/refeicao_repository.dart';
-import 'package:mydiet/app/model/refeicao.dart';
+import 'package:mydiet/app/data/repositories/refeicao_repository.dart';
+import 'package:mydiet/app/data/model/refeicao.dart';
 import 'package:provider/provider.dart';
 import 'configuracoes_page.dart';
 import 'perfil_page.dart';
@@ -73,8 +73,8 @@ class _MainHomeState extends State<MainHome> {
             Text(
               'Refeições de Hoje',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 16),
 
@@ -84,7 +84,11 @@ class _MainHomeState extends State<MainHome> {
                   padding: const EdgeInsets.symmetric(vertical: 40),
                   child: Column(
                     children: const [
-                      Icon(Icons.no_food_outlined, size: 48, color: Colors.grey),
+                      Icon(
+                        Icons.no_food_outlined,
+                        size: 48,
+                        color: Colors.grey,
+                      ),
                       SizedBox(height: 8),
                       Text(
                         'Nenhuma refeição cadastrada hoje.',
@@ -126,7 +130,9 @@ class _MainHomeState extends State<MainHome> {
                           onTap: () => irParaRefeicao(periodo),
                           child: Padding(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 14),
+                              horizontal: 16,
+                              vertical: 14,
+                            ),
                             child: Row(
                               children: [
                                 Icon(
@@ -151,8 +157,10 @@ class _MainHomeState extends State<MainHome> {
                                     ],
                                   ),
                                 ),
-                                const Icon(Icons.chevron_right,
-                                    color: Colors.grey),
+                                const Icon(
+                                  Icons.chevron_right,
+                                  color: Colors.grey,
+                                ),
                               ],
                             ),
                           ),
@@ -162,7 +170,7 @@ class _MainHomeState extends State<MainHome> {
                   ],
                 );
               }),
-            const SizedBox(height: 80), 
+            const SizedBox(height: 80),
           ],
         );
       },
@@ -192,18 +200,22 @@ class _MainHomeState extends State<MainHome> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               IconButton(
-                  onPressed: () => setState(() => _paginaAtual = 0),
-                  icon: const Icon(Icons.home)),
+                onPressed: () => setState(() => _paginaAtual = 0),
+                icon: const Icon(Icons.home),
+              ),
               IconButton(
-                  onPressed: () => setState(() => _paginaAtual = 1),
-                  icon: const Icon(Icons.food_bank_outlined)),
+                onPressed: () => setState(() => _paginaAtual = 1),
+                icon: const Icon(Icons.food_bank_outlined),
+              ),
               const SizedBox(width: 48),
               IconButton(
-                  onPressed: () => setState(() => _paginaAtual = 2),
-                  icon: const Icon(Icons.settings)),
+                onPressed: () => setState(() => _paginaAtual = 2),
+                icon: const Icon(Icons.settings),
+              ),
               IconButton(
-                  onPressed: () => setState(() => _paginaAtual = 3),
-                  icon: const Icon(Icons.person)),
+                onPressed: () => setState(() => _paginaAtual = 3),
+                icon: const Icon(Icons.person),
+              ),
             ],
           ),
         ),

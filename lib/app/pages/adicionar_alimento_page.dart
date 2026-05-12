@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mydiet/app/model/alimento.dart';
-import 'package:mydiet/app/repositories/alimento_repository.dart';
+import 'package:mydiet/app/data/model/alimento.dart';
+import 'package:mydiet/app/data/repositories/alimento_repository.dart';
 import 'package:mydiet/app/widgets/form_field_wiget.dart';
 import 'package:provider/provider.dart';
 
@@ -110,21 +110,18 @@ class _AdicionarAlimentoState extends State<AdicionarAlimento> {
                         label: "Qntd de carboidratos",
                         textoSufixo: "g",
                         apenasNumeros: true,
-                      
                       ),
                       CampoTexto(
                         controller: _qntdGordura,
                         label: "Qntd de gordura",
                         textoSufixo: "g",
                         apenasNumeros: true,
-                       
                       ),
                       CampoTexto(
                         controller: _qntdProteina,
                         label: "Qntd de proteina",
                         textoSufixo: "g",
                         apenasNumeros: true,
-                        
                       ),
                     ],
                   ].expand((w) => [w, const SizedBox(height: 1)]).toList(),

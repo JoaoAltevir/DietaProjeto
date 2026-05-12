@@ -1,8 +1,8 @@
 import 'package:objectbox/objectbox.dart';
-import 'package:mydiet/app/model/alimento.dart';
+import 'package:mydiet/app/data/model/alimento.dart';
+
 @Entity()
 class AlimentoBox {
-
   @Id()
   int id = 0;
   String nome = "";
@@ -13,7 +13,7 @@ class AlimentoBox {
   String unidadeMedida = "";
   String valorCota = "";
 
-  Alimento fromBox(){
+  Alimento fromBox() {
     return Alimento(
       id: id.toString(),
       nome: nome,
@@ -22,8 +22,7 @@ class AlimentoBox {
       proteina: proteina,
       caloria: caloria,
       unidadeMedida: unidadeMedida,
-      valorCota: valorCota
+      valorCota: valorCota,
     );
   }
-
 }

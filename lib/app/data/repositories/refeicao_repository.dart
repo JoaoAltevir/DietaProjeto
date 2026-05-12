@@ -1,8 +1,8 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
-import 'package:mydiet/app/model/alimento.dart';
-import 'package:mydiet/app/model/refeicao.dart';
+import 'package:mydiet/app/data/model/alimento.dart';
+import 'package:mydiet/app/data/model/refeicao.dart';
 
 class RefeicaoRepository extends ChangeNotifier {
   final List<Refeicao> _listaRefeicoes = [];
@@ -24,8 +24,8 @@ class RefeicaoRepository extends ChangeNotifier {
 
   void removerAlimento(Refeicao refeicao, Alimento alimento) {
     refeicao.alimentoListaRefeicao.remove(alimento);
-     if (refeicao.alimentoListaRefeicao.isEmpty) {
-    _listaRefeicoes.remove(refeicao);
+    if (refeicao.alimentoListaRefeicao.isEmpty) {
+      _listaRefeicoes.remove(refeicao);
     }
     notifyListeners();
   }
@@ -51,6 +51,6 @@ class RefeicaoRepository extends ChangeNotifier {
   }
 
   void editarAlimento() {
-        notifyListeners();
-      }
+    notifyListeners();
+  }
 }

@@ -4,11 +4,8 @@ import 'package:mydiet/app/pages/main_homepage.dart';
 import 'package:mydiet/app/theme/themecontroller.dart';
 import 'package:provider/provider.dart';
 
-
 class App extends StatelessWidget {
-  final AlimentoRepository alimentoRepository;
-  const App({super.key, required this.alimentoRepository});
-
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +17,11 @@ class App extends StatelessWidget {
       theme: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.blue,
-        ),
-        darkTheme: ThemeData(
+      ),
+      darkTheme: ThemeData(
         brightness: Brightness.dark,
       ),
-          home: MainHome(),
-      );
-  
+      home: MainHome(),
+    );
   }
 }

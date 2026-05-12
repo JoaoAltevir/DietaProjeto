@@ -1,6 +1,6 @@
-import 'package:mydiet/app/model/alimento.dart';
+import 'package:mydiet/app/data/model/alimento.dart';
 import 'package:objectbox/objectbox.dart';
-import 'package:mydiet/app/model/refeicao.dart';
+import 'package:mydiet/app/data/model/refeicao.dart';
 
 @Entity()
 class RefeicaoBox {
@@ -11,7 +11,7 @@ class RefeicaoBox {
   final List<Alimento> alimentoListaRefeicao = ToMany<Alimento>();
   String periodoRefeicao = "";
 
-  Refeicao fromBox(){
+  Refeicao fromBox() {
     return Refeicao(
       id: id.toString(),
       nomeRefeicao: nomeRefeicao,
@@ -20,6 +20,4 @@ class RefeicaoBox {
       periodoRefeicao: periodoRefeicao,
     );
   }
-
-  
 }
