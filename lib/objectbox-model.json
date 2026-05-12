@@ -1,0 +1,112 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "3:7037542574781544671",
+      "lastPropertyId": "8:3438387466350562578",
+      "name": "AlimentoBox",
+      "properties": [
+        {
+          "id": "1:3780761263689207011",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7922628974321057834",
+          "name": "nome",
+          "type": 9
+        },
+        {
+          "id": "3:1680969035779033374",
+          "name": "carboidratos",
+          "type": 9
+        },
+        {
+          "id": "4:6067615415326283364",
+          "name": "gordura",
+          "type": 9
+        },
+        {
+          "id": "5:377278787931170997",
+          "name": "proteina",
+          "type": 9
+        },
+        {
+          "id": "6:2247946801565594451",
+          "name": "caloria",
+          "type": 9
+        },
+        {
+          "id": "7:2017320693549136121",
+          "name": "unidadeMedida",
+          "type": 9
+        },
+        {
+          "id": "8:3438387466350562578",
+          "name": "valorCota",
+          "type": 9
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:5797885550165146912",
+      "lastPropertyId": "4:8033121169720173000",
+      "name": "RefeicaoBox",
+      "properties": [
+        {
+          "id": "1:7515351584323012762",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2907393200199476435",
+          "name": "nomeRefeicao",
+          "type": 9
+        },
+        {
+          "id": "3:3986154534264964731",
+          "name": "dataRefeicao",
+          "type": 10
+        },
+        {
+          "id": "4:8033121169720173000",
+          "name": "periodoRefeicao",
+          "type": 9
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "4:5797885550165146912",
+  "lastIndexId": "0:0",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [
+    8628183588665109171,
+    2678454613864280679
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    1186305008489830881,
+    920493422513980867,
+    3949236621067748276,
+    363041451175972180,
+    727308250522707589,
+    5500829753680770461,
+    4659093685641145474,
+    5274561935021005779,
+    1390110510755856090,
+    8443092945917449618,
+    1387472686940961963,
+    6026440035012796223
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}
