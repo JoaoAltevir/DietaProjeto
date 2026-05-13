@@ -14,7 +14,6 @@ class AdicionarRefeicao extends StatefulWidget {
 }
 
 class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
-  late AlimentoRepository alimentosTabela;
   DateTime? _dataSelecionada;
   TimeOfDay? _horaSelecionada;
   String? valorSelecionado;
@@ -107,8 +106,6 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
 
   @override
   Widget build(BuildContext context) {
-    alimentosTabela = Provider.of<AlimentoRepository>(context);
-    final alimentos = context.read<AlimentoRepository>().listaAlimentos;
     return Scaffold(
       appBar: AppBar(
         title: Text('Criar Refeicao'),
@@ -287,6 +284,7 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
                     Expanded(
                       child: Consumer<AlimentoRepository>(
                         builder: (context, alimentosTabela, child) {
+                          final alimentos = alimentosTabela.alimentos;
                           return alimentos.isEmpty
                               ? Center(
                                   child: Text(
