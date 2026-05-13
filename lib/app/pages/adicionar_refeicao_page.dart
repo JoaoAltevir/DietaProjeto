@@ -108,6 +108,7 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
   @override
   Widget build(BuildContext context) {
     alimentosTabela = Provider.of<AlimentoRepository>(context);
+    final alimentos = context.read<AlimentoRepository>().listaAlimentos;
     return Scaffold(
       appBar: AppBar(
         title: Text('Criar Refeicao'),
@@ -286,7 +287,7 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
                     Expanded(
                       child: Consumer<AlimentoRepository>(
                         builder: (context, alimentosTabela, child) {
-                          return alimentosTabela.listaAlimentos.isEmpty
+                          return alimentos.isEmpty
                               ? Center(
                                   child: Text(
                                     'Nenhum alimento encontrado.\nCrie antes de adicionar uma refeição!',
@@ -295,10 +296,10 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
                                 )
                               : ListView.builder(
                                   itemCount:
-                                      alimentosTabela.listaAlimentos.length,
+                                      alimentos.length,
                                   itemBuilder: (_, index) {
                                     final alimento =
-                                        alimentosTabela.listaAlimentos[index];
+                                        alimentos[index];
 
                                     final selecionado = selecionados.contains(
                                       alimento,

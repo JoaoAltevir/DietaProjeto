@@ -7,23 +7,26 @@ import 'package:mydiet/app/data/services/alimento_database.dart';
 
 class AlimentoRepository extends ChangeNotifier {
   final FoodDatabase database;
-  final List<Alimento> _listaAlimentos = [];
+  List<Alimento> _listaAlimentos = [];
 
   AlimentoRepository({required this.database});
 
   UnmodifiableListView<Alimento> get listaAlimentos =>
       UnmodifiableListView(_listaAlimentos);
 
-  void saveAll(List<Alimento> alimentos) {
+  Future<void> getAll() async{
+    final List<Alimento> alimentos = database.findAllFoods();
+    _listaAlimentos = [];
     for (var alimento in alimentos) {
-      if (!_listaAlimentos.contains(alimento)) _listaAlimentos.add(alimento);
+      if (!_listaAlimentos.contains(alimento)){
+        _listaAlimentos.add(alimento);
+      }
     }
     notifyListeners();
   }
   
   Result<bool, String> saveAlimento(Alimento alimento){
     try {
-      _listaAlimentos.add(alimento);
       database.createFood(alimento);
       notifyListeners();
       return Ok(true);
@@ -32,8 +35,8 @@ class AlimentoRepository extends ChangeNotifier {
     }
   }
 
-  void remove(Alimento alimento) {
+  /*void remove(Alimento alimento) {
     _listaAlimentos.remove(alimento);
     notifyListeners();
-  }
+  }*/
 }
