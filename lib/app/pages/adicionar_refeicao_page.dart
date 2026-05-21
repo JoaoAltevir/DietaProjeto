@@ -284,7 +284,7 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
                     Expanded(
                       child: Consumer<AlimentoRepository>(
                         builder: (context, alimentosTabela, child) {
-                          final alimentos = alimentosTabela.alimentos;
+                          final alimentos = alimentosTabela.listaAlimentos;
                           return alimentos.isEmpty
                               ? Center(
                                   child: Text(

@@ -9,12 +9,14 @@ class AlimentoRepository extends ChangeNotifier {
   final FoodDatabase database;
   List<Alimento> _listaAlimentos = [];
 
-  AlimentoRepository({required this.database});
+  AlimentoRepository({required this.database}){
+    getAll();
+  }
 
   UnmodifiableListView<Alimento> get listaAlimentos =>
       UnmodifiableListView(_listaAlimentos);
 
-  Future<void> getAll() async{
+  Future<List<Alimento>> getAll() async{
     final List<Alimento> alimentos = database.findAllFoods();
     _listaAlimentos = [];
     for (var alimento in alimentos) {
@@ -23,11 +25,13 @@ class AlimentoRepository extends ChangeNotifier {
       }
     }
     notifyListeners();
+    return _listaAlimentos;
   }
   
   Result<bool, String> saveAlimento(Alimento alimento){
     try {
       database.createFood(alimento);
+      _listaAlimentos.add(alimento);
       notifyListeners();
       return Ok(true);
     } on DatabaseException catch(_) {
