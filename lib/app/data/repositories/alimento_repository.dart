@@ -39,8 +39,20 @@ class AlimentoRepository extends ChangeNotifier {
     }
   }
 
-  /*void remove(Alimento alimento) {
+  void remove(Alimento alimento) {
+    int idAlimento = alimento.id;
+    database.deleteFood(idAlimento);
     _listaAlimentos.remove(alimento);
     notifyListeners();
-  }*/
+  }
+
+  void removeList(List<Alimento> alimentos) {
+    for (var alimento in alimentos) {
+      int idAlimento = alimento.id;
+      database.deleteFood(idAlimento);
+      _listaAlimentos.remove(alimento);
+    }
+    notifyListeners();
+  }
+
 }

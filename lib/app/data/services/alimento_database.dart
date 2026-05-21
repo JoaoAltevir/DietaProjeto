@@ -38,4 +38,17 @@ class FoodDatabase{
       throw DatabaseException('Falha ao recuperar alimentos cadastrados: $e');
     }
   }
+
+  void deleteFood(int id) {
+    try {
+      final alimentoDelete = objectBoxDatabase.store.box<AlimentoBox>().get(id);
+      if (alimentoDelete != null) {
+        objectBoxDatabase.store.box<AlimentoBox>().remove(alimentoDelete.id);
+      } else {
+        throw DatabaseException('Alimento não encontrado para exclusão');
+      }
+    } catch (e) {
+      throw DatabaseException('Falha ao excluir alimento: $e');
+    }
+  }
 }

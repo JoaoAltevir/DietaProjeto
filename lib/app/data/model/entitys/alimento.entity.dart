@@ -15,7 +15,7 @@ class AlimentoBox {
 
   Alimento fromBox() {
     return Alimento(
-      id: id.toString(),
+      id: id,
       nome: nome,
       carboidratos: carboidratos,
       gordura: gordura,

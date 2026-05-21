@@ -1,5 +1,5 @@
 class Alimento {
-  String id;
+  int id;
   String nome;
   String carboidratos;
   String gordura;
@@ -8,6 +8,6 @@ class Alimento {
   String unidadeMedida;
   String valorCota;
 
-  Alimento({this.id = '', required this.nome, required this.caloria,required this.unidadeMedida,required this.valorCota,this.carboidratos="",this.gordura="",this.proteina=""});
+  Alimento({this.id = 0, required this.nome, required this.caloria,required this.unidadeMedida,required this.valorCota,this.carboidratos="",this.gordura="",this.proteina=""});
   
 }

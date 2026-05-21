@@ -48,6 +48,10 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
         ),
       );
 
+      
+
+     
+
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Refeicao criada com sucesso!'),
@@ -69,6 +73,29 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
       }
     }
   }
+
+    void excluirAlimento() {
+        final alimentoRepository = context.read<AlimentoRepository>();
+        if(selecionados.length == 1){
+          alimentoRepository.remove(selecionados.first);
+        } else {
+          alimentoRepository.removeList(selecionados);
+        }
+       // for (var alimento in selecionados) {
+         // alimentoRepository.remove(alimento);
+        //}
+        setState(() {
+          selecionados.clear();
+        });
+
+        ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Alimento excluido com sucesso!'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      Navigator.pop(context);
+      }
 
   Future<void> _selecionarData() async {
     final data = await showDatePicker(
@@ -329,11 +356,20 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: criarRefeicao,
-        child: Icon(Icons.add),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        spacing: 16,
+        children: [
+          FloatingActionButton(
+            onPressed: excluirAlimento,
+            child: Icon(Icons.delete),
+          ),
+          FloatingActionButton(
+            onPressed: criarRefeicao,
+            child: Icon(Icons.add),
+          ),
+        ]
+      )
     );
   }
 }

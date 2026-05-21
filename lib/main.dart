@@ -12,7 +12,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final objectBoxDatabase = await startObjectBox();
-  //TODO final mealDatabase = RefeicaoDatabase(objectBoxDatabase: objectBoxDatabase);
 
   runApp(
     MultiProvider(
