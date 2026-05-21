@@ -21,64 +21,6 @@ export 'package:objectbox/objectbox.dart'; // so that callers only have to impor
 
 final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
-    id: const obx_int.IdUid(3, 7037542574781544671),
-    name: 'AlimentoBox',
-    lastPropertyId: const obx_int.IdUid(8, 3438387466350562578),
-    flags: 0,
-    properties: <obx_int.ModelProperty>[
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(1, 3780761263689207011),
-        name: 'id',
-        type: 6,
-        flags: 1,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(2, 7922628974321057834),
-        name: 'nome',
-        type: 9,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(3, 1680969035779033374),
-        name: 'carboidratos',
-        type: 9,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(4, 6067615415326283364),
-        name: 'gordura',
-        type: 9,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(5, 377278787931170997),
-        name: 'proteina',
-        type: 9,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(6, 2247946801565594451),
-        name: 'caloria',
-        type: 9,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(7, 2017320693549136121),
-        name: 'unidadeMedida',
-        type: 9,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
-        id: const obx_int.IdUid(8, 3438387466350562578),
-        name: 'valorCota',
-        type: 9,
-        flags: 0,
-      ),
-    ],
-    relations: <obx_int.ModelRelation>[],
-    backlinks: <obx_int.ModelBacklink>[],
-  ),
-  obx_int.ModelEntity(
     id: const obx_int.IdUid(4, 5797885550165146912),
     name: 'RefeicaoBox',
     lastPropertyId: const obx_int.IdUid(4, 8033121169720173000),
@@ -100,13 +42,87 @@ final _entities = <obx_int.ModelEntity>[
         id: const obx_int.IdUid(3, 3986154534264964731),
         name: 'dataRefeicao',
         type: 10,
-        flags: 0,
+        flags: 8,
+        indexId: const obx_int.IdUid(1, 3399983291488124499),
       ),
       obx_int.ModelProperty(
         id: const obx_int.IdUid(4, 8033121169720173000),
         name: 'periodoRefeicao',
         type: 9,
         flags: 0,
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[
+      obx_int.ModelBacklink(
+        name: 'alimentoListaRefeicao',
+        srcEntity: 'AlimentoBox',
+        srcField: 'refeicao',
+      ),
+    ],
+  ),
+  obx_int.ModelEntity(
+    id: const obx_int.IdUid(5, 6632429645699339538),
+    name: 'AlimentoBox',
+    lastPropertyId: const obx_int.IdUid(9, 3041707230301789941),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 1598222082013596730),
+        name: 'id',
+        type: 6,
+        flags: 1,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(2, 452618255795929042),
+        name: 'nome',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(3, 15149258006280958),
+        name: 'carboidratos',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 334946144332565995),
+        name: 'gordura',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(5, 4650212959042967173),
+        name: 'proteina',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(6, 3540989374099819399),
+        name: 'caloria',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(7, 7168436229398941819),
+        name: 'unidadeMedida',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(8, 8207456900273264804),
+        name: 'valorCota',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(9, 3041707230301789941),
+        name: 'refeicaoId',
+        type: 11,
+        flags: 520,
+        indexId: const obx_int.IdUid(2, 1423389578299902901),
+        relationField: 'refeicao',
+        relationTarget: 'RefeicaoBox',
       ),
     ],
     relations: <obx_int.ModelRelation>[],
@@ -157,11 +173,15 @@ obx_int.ModelDefinition getObjectBoxModel() {
     // Typically, this is done with `dart run build_runner build`.
     generatorVersion: obx_int.GeneratorVersion.v2025_12_16,
     entities: _entities,
-    lastEntityId: const obx_int.IdUid(4, 5797885550165146912),
-    lastIndexId: const obx_int.IdUid(0, 0),
+    lastEntityId: const obx_int.IdUid(5, 6632429645699339538),
+    lastIndexId: const obx_int.IdUid(2, 1423389578299902901),
     lastRelationId: const obx_int.IdUid(0, 0),
     lastSequenceId: const obx_int.IdUid(0, 0),
-    retiredEntityUids: const [8628183588665109171, 2678454613864280679],
+    retiredEntityUids: const [
+      8628183588665109171,
+      2678454613864280679,
+      7037542574781544671,
+    ],
     retiredIndexUids: const [],
     retiredPropertyUids: const [
       1186305008489830881,
@@ -176,6 +196,14 @@ obx_int.ModelDefinition getObjectBoxModel() {
       8443092945917449618,
       1387472686940961963,
       6026440035012796223,
+      3780761263689207011,
+      7922628974321057834,
+      1680969035779033374,
+      6067615415326283364,
+      377278787931170997,
+      2247946801565594451,
+      2017320693549136121,
+      3438387466350562578,
     ],
     retiredRelationUids: const [],
     modelVersion: 5,
@@ -184,9 +212,65 @@ obx_int.ModelDefinition getObjectBoxModel() {
   );
 
   final bindings = <Type, obx_int.EntityDefinition>{
-    AlimentoBox: obx_int.EntityDefinition<AlimentoBox>(
+    RefeicaoBox: obx_int.EntityDefinition<RefeicaoBox>(
       model: _entities[0],
-      toOneRelations: (AlimentoBox object) => [],
+      toOneRelations: (RefeicaoBox object) => [],
+      toManyRelations: (RefeicaoBox object) => {
+        obx_int.RelInfo<AlimentoBox>.toOneBacklink(
+          9,
+          object.id,
+          (AlimentoBox srcObject) => srcObject.refeicao,
+        ): object.alimentoListaRefeicao,
+      },
+      getId: (RefeicaoBox object) => object.id,
+      setId: (RefeicaoBox object, int id) {
+        object.id = id;
+      },
+      objectToFB: (RefeicaoBox object, fb.Builder fbb) {
+        final nomeRefeicaoOffset = fbb.writeString(object.nomeRefeicao);
+        final periodoRefeicaoOffset = fbb.writeString(object.periodoRefeicao);
+        fbb.startTable(5);
+        fbb.addInt64(0, object.id);
+        fbb.addOffset(1, nomeRefeicaoOffset);
+        fbb.addInt64(2, object.dataRefeicao?.millisecondsSinceEpoch);
+        fbb.addOffset(3, periodoRefeicaoOffset);
+        fbb.finish(fbb.endTable());
+        return object.id;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+        final dataRefeicaoValue = const fb.Int64Reader().vTableGetNullable(
+          buffer,
+          rootOffset,
+          8,
+        );
+        final object = RefeicaoBox()
+          ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
+          ..nomeRefeicao = const fb.StringReader(
+            asciiOptimization: true,
+          ).vTableGet(buffer, rootOffset, 6, '')
+          ..dataRefeicao = dataRefeicaoValue == null
+              ? null
+              : DateTime.fromMillisecondsSinceEpoch(dataRefeicaoValue)
+          ..periodoRefeicao = const fb.StringReader(
+            asciiOptimization: true,
+          ).vTableGet(buffer, rootOffset, 10, '');
+        obx_int.InternalToManyAccess.setRelInfo<RefeicaoBox>(
+          object.alimentoListaRefeicao,
+          store,
+          obx_int.RelInfo<AlimentoBox>.toOneBacklink(
+            9,
+            object.id,
+            (AlimentoBox srcObject) => srcObject.refeicao,
+          ),
+        );
+        return object;
+      },
+    ),
+    AlimentoBox: obx_int.EntityDefinition<AlimentoBox>(
+      model: _entities[1],
+      toOneRelations: (AlimentoBox object) => [object.refeicao],
       toManyRelations: (AlimentoBox object) => {},
       getId: (AlimentoBox object) => object.id,
       setId: (AlimentoBox object, int id) {
@@ -200,7 +284,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
         final caloriaOffset = fbb.writeString(object.caloria);
         final unidadeMedidaOffset = fbb.writeString(object.unidadeMedida);
         final valorCotaOffset = fbb.writeString(object.valorCota);
-        fbb.startTable(9);
+        fbb.startTable(10);
         fbb.addInt64(0, object.id);
         fbb.addOffset(1, nomeOffset);
         fbb.addOffset(2, carboidratosOffset);
@@ -209,6 +293,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
         fbb.addOffset(5, caloriaOffset);
         fbb.addOffset(6, unidadeMedidaOffset);
         fbb.addOffset(7, valorCotaOffset);
+        fbb.addInt64(8, object.refeicao.targetId);
         fbb.finish(fbb.endTable());
         return object.id;
       },
@@ -239,45 +324,13 @@ obx_int.ModelDefinition getObjectBoxModel() {
           ..valorCota = const fb.StringReader(
             asciiOptimization: true,
           ).vTableGet(buffer, rootOffset, 18, '');
-
-        return object;
-      },
-    ),
-    RefeicaoBox: obx_int.EntityDefinition<RefeicaoBox>(
-      model: _entities[1],
-      toOneRelations: (RefeicaoBox object) => [],
-      toManyRelations: (RefeicaoBox object) => {},
-      getId: (RefeicaoBox object) => object.id,
-      setId: (RefeicaoBox object, int id) {
-        object.id = id;
-      },
-      objectToFB: (RefeicaoBox object, fb.Builder fbb) {
-        final nomeRefeicaoOffset = fbb.writeString(object.nomeRefeicao);
-        final periodoRefeicaoOffset = fbb.writeString(object.periodoRefeicao);
-        fbb.startTable(5);
-        fbb.addInt64(0, object.id);
-        fbb.addOffset(1, nomeRefeicaoOffset);
-        fbb.addInt64(2, object.dataRefeicao.millisecondsSinceEpoch);
-        fbb.addOffset(3, periodoRefeicaoOffset);
-        fbb.finish(fbb.endTable());
-        return object.id;
-      },
-      objectFromFB: (obx.Store store, ByteData fbData) {
-        final buffer = fb.BufferContext(fbData);
-        final rootOffset = buffer.derefObject(0);
-
-        final object = RefeicaoBox()
-          ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
-          ..nomeRefeicao = const fb.StringReader(
-            asciiOptimization: true,
-          ).vTableGet(buffer, rootOffset, 6, '')
-          ..dataRefeicao = DateTime.fromMillisecondsSinceEpoch(
-            const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0),
-          )
-          ..periodoRefeicao = const fb.StringReader(
-            asciiOptimization: true,
-          ).vTableGet(buffer, rootOffset, 10, '');
-
+        object.refeicao.targetId = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          20,
+          0,
+        );
+        object.refeicao.attach(store);
         return object;
       },
     ),
@@ -286,68 +339,77 @@ obx_int.ModelDefinition getObjectBoxModel() {
   return obx_int.ModelDefinition(model, bindings);
 }
 
-/// [AlimentoBox] entity fields to define ObjectBox queries.
-class AlimentoBox_ {
-  /// See [AlimentoBox.id].
-  static final id = obx.QueryIntegerProperty<AlimentoBox>(
-    _entities[0].properties[0],
-  );
-
-  /// See [AlimentoBox.nome].
-  static final nome = obx.QueryStringProperty<AlimentoBox>(
-    _entities[0].properties[1],
-  );
-
-  /// See [AlimentoBox.carboidratos].
-  static final carboidratos = obx.QueryStringProperty<AlimentoBox>(
-    _entities[0].properties[2],
-  );
-
-  /// See [AlimentoBox.gordura].
-  static final gordura = obx.QueryStringProperty<AlimentoBox>(
-    _entities[0].properties[3],
-  );
-
-  /// See [AlimentoBox.proteina].
-  static final proteina = obx.QueryStringProperty<AlimentoBox>(
-    _entities[0].properties[4],
-  );
-
-  /// See [AlimentoBox.caloria].
-  static final caloria = obx.QueryStringProperty<AlimentoBox>(
-    _entities[0].properties[5],
-  );
-
-  /// See [AlimentoBox.unidadeMedida].
-  static final unidadeMedida = obx.QueryStringProperty<AlimentoBox>(
-    _entities[0].properties[6],
-  );
-
-  /// See [AlimentoBox.valorCota].
-  static final valorCota = obx.QueryStringProperty<AlimentoBox>(
-    _entities[0].properties[7],
-  );
-}
-
 /// [RefeicaoBox] entity fields to define ObjectBox queries.
 class RefeicaoBox_ {
   /// See [RefeicaoBox.id].
   static final id = obx.QueryIntegerProperty<RefeicaoBox>(
-    _entities[1].properties[0],
+    _entities[0].properties[0],
   );
 
   /// See [RefeicaoBox.nomeRefeicao].
   static final nomeRefeicao = obx.QueryStringProperty<RefeicaoBox>(
-    _entities[1].properties[1],
+    _entities[0].properties[1],
   );
 
   /// See [RefeicaoBox.dataRefeicao].
   static final dataRefeicao = obx.QueryDateProperty<RefeicaoBox>(
-    _entities[1].properties[2],
+    _entities[0].properties[2],
   );
 
   /// See [RefeicaoBox.periodoRefeicao].
   static final periodoRefeicao = obx.QueryStringProperty<RefeicaoBox>(
+    _entities[0].properties[3],
+  );
+
+  /// see [RefeicaoBox.alimentoListaRefeicao]
+  static final alimentoListaRefeicao =
+      obx.QueryBacklinkToMany<AlimentoBox, RefeicaoBox>(AlimentoBox_.refeicao);
+}
+
+/// [AlimentoBox] entity fields to define ObjectBox queries.
+class AlimentoBox_ {
+  /// See [AlimentoBox.id].
+  static final id = obx.QueryIntegerProperty<AlimentoBox>(
+    _entities[1].properties[0],
+  );
+
+  /// See [AlimentoBox.nome].
+  static final nome = obx.QueryStringProperty<AlimentoBox>(
+    _entities[1].properties[1],
+  );
+
+  /// See [AlimentoBox.carboidratos].
+  static final carboidratos = obx.QueryStringProperty<AlimentoBox>(
+    _entities[1].properties[2],
+  );
+
+  /// See [AlimentoBox.gordura].
+  static final gordura = obx.QueryStringProperty<AlimentoBox>(
     _entities[1].properties[3],
+  );
+
+  /// See [AlimentoBox.proteina].
+  static final proteina = obx.QueryStringProperty<AlimentoBox>(
+    _entities[1].properties[4],
+  );
+
+  /// See [AlimentoBox.caloria].
+  static final caloria = obx.QueryStringProperty<AlimentoBox>(
+    _entities[1].properties[5],
+  );
+
+  /// See [AlimentoBox.unidadeMedida].
+  static final unidadeMedida = obx.QueryStringProperty<AlimentoBox>(
+    _entities[1].properties[6],
+  );
+
+  /// See [AlimentoBox.valorCota].
+  static final valorCota = obx.QueryStringProperty<AlimentoBox>(
+    _entities[1].properties[7],
+  );
+
+  /// See [AlimentoBox.refeicao].
+  static final refeicao = obx.QueryRelationToOne<AlimentoBox, RefeicaoBox>(
+    _entities[1].properties[8],
   );
 }
