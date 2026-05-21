@@ -6,7 +6,7 @@ import 'package:mydiet/app/theme/themecontroller.dart';
 import 'package:provider/provider.dart';
 import 'package:mydiet/app/data/objectbox_database.dart';
 import 'package:mydiet/app/data/services/alimento_database.dart';
-//TODOimport 'package:mydiet/app/data/services/refeicao_database.dart';
+import 'package:mydiet/app/data/services/refeicao_database.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,8 +22,11 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) => AlimentoRepository(database: context.read()),
         ),
+        Provider<RefeicaoDatabase>(
+          create: (_) => RefeicaoDatabase(objectBoxDatabase: objectBoxDatabase),
+        ),
         ChangeNotifierProvider(
-          create: (_) => RefeicaoRepository(),
+          create: (context) => RefeicaoRepository(database: context.read()),
         ),
         ChangeNotifierProvider(create: (_) => ThemeController()),
       ],
