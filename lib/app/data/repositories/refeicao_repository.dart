@@ -31,6 +31,7 @@ class RefeicaoRepository extends ChangeNotifier {
   }
 
   void remove(Refeicao refeicao) {
+    database.deleteRefeicao(refeicao.id);
     _listaRefeicoes.remove(refeicao);
     notifyListeners();
   }
