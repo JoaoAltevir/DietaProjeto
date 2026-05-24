@@ -45,6 +45,7 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
           dataRefeicao: dataFinal,
           alimentoListaRefeicao: selecionados,
           periodoRefeicao: valorSelecionado.toString(),
+          user:refeicaoRepository.getCurrentUser(), //como salvar o usuário logado? 
         ),
       );
 

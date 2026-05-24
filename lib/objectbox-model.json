@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "4:5797885550165146912",
-      "lastPropertyId": "4:8033121169720173000",
+      "lastPropertyId": "5:9081034472993270000",
       "name": "RefeicaoBox",
       "properties": [
         {
@@ -30,6 +30,14 @@
           "id": "4:8033121169720173000",
           "name": "periodoRefeicao",
           "type": 9
+        },
+        {
+          "id": "5:9081034472993270000",
+          "name": "userId",
+          "indexId": "3:2960133219658199501",
+          "type": 11,
+          "flags": 520,
+          "relationTarget": "UserBox"
         }
       ],
       "relations": []
@@ -90,10 +98,39 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "6:6294384732562797505",
+      "lastPropertyId": "4:3897737452820094103",
+      "name": "UserBox",
+      "properties": [
+        {
+          "id": "1:1801165281259664593",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1841837479110998018",
+          "name": "nome",
+          "type": 9
+        },
+        {
+          "id": "3:8620629646789404481",
+          "name": "pin",
+          "type": 6
+        },
+        {
+          "id": "4:3897737452820094103",
+          "name": "isLoggedIn",
+          "type": 1
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "5:6632429645699339538",
-  "lastIndexId": "2:1423389578299902901",
+  "lastEntityId": "6:6294384732562797505",
+  "lastIndexId": "3:2960133219658199501",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,

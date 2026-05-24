@@ -16,6 +16,7 @@ import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'app/data/model/entitys/alimento.entity.dart';
 import 'app/data/model/entitys/refeicao.entity.dart';
+import 'app/data/model/entitys/user.entity.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -23,7 +24,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
     id: const obx_int.IdUid(4, 5797885550165146912),
     name: 'RefeicaoBox',
-    lastPropertyId: const obx_int.IdUid(4, 8033121169720173000),
+    lastPropertyId: const obx_int.IdUid(5, 9081034472993270000),
     flags: 0,
     properties: <obx_int.ModelProperty>[
       obx_int.ModelProperty(
@@ -50,6 +51,15 @@ final _entities = <obx_int.ModelEntity>[
         name: 'periodoRefeicao',
         type: 9,
         flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(5, 9081034472993270000),
+        name: 'userId',
+        type: 11,
+        flags: 520,
+        indexId: const obx_int.IdUid(3, 2960133219658199501),
+        relationField: 'user',
+        relationTarget: 'UserBox',
       ),
     ],
     relations: <obx_int.ModelRelation>[],
@@ -128,6 +138,46 @@ final _entities = <obx_int.ModelEntity>[
     relations: <obx_int.ModelRelation>[],
     backlinks: <obx_int.ModelBacklink>[],
   ),
+  obx_int.ModelEntity(
+    id: const obx_int.IdUid(6, 6294384732562797505),
+    name: 'UserBox',
+    lastPropertyId: const obx_int.IdUid(4, 3897737452820094103),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 1801165281259664593),
+        name: 'id',
+        type: 6,
+        flags: 1,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(2, 1841837479110998018),
+        name: 'nome',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(3, 8620629646789404481),
+        name: 'pin',
+        type: 6,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 3897737452820094103),
+        name: 'isLoggedIn',
+        type: 1,
+        flags: 0,
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[
+      obx_int.ModelBacklink(
+        name: 'refeicoes',
+        srcEntity: 'RefeicaoBox',
+        srcField: 'user',
+      ),
+    ],
+  ),
 ];
 
 /// Shortcut for [obx.Store.new] that passes [getObjectBoxModel] and for Flutter
@@ -173,8 +223,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
     // Typically, this is done with `dart run build_runner build`.
     generatorVersion: obx_int.GeneratorVersion.v2025_12_16,
     entities: _entities,
-    lastEntityId: const obx_int.IdUid(5, 6632429645699339538),
-    lastIndexId: const obx_int.IdUid(2, 1423389578299902901),
+    lastEntityId: const obx_int.IdUid(6, 6294384732562797505),
+    lastIndexId: const obx_int.IdUid(3, 2960133219658199501),
     lastRelationId: const obx_int.IdUid(0, 0),
     lastSequenceId: const obx_int.IdUid(0, 0),
     retiredEntityUids: const [
@@ -214,7 +264,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
   final bindings = <Type, obx_int.EntityDefinition>{
     RefeicaoBox: obx_int.EntityDefinition<RefeicaoBox>(
       model: _entities[0],
-      toOneRelations: (RefeicaoBox object) => [],
+      toOneRelations: (RefeicaoBox object) => [object.user],
       toManyRelations: (RefeicaoBox object) => {
         obx_int.RelInfo<AlimentoBox>.toOneBacklink(
           9,
@@ -229,11 +279,12 @@ obx_int.ModelDefinition getObjectBoxModel() {
       objectToFB: (RefeicaoBox object, fb.Builder fbb) {
         final nomeRefeicaoOffset = fbb.writeString(object.nomeRefeicao);
         final periodoRefeicaoOffset = fbb.writeString(object.periodoRefeicao);
-        fbb.startTable(5);
+        fbb.startTable(6);
         fbb.addInt64(0, object.id);
         fbb.addOffset(1, nomeRefeicaoOffset);
         fbb.addInt64(2, object.dataRefeicao?.millisecondsSinceEpoch);
         fbb.addOffset(3, periodoRefeicaoOffset);
+        fbb.addInt64(4, object.user.targetId);
         fbb.finish(fbb.endTable());
         return object.id;
       },
@@ -256,6 +307,13 @@ obx_int.ModelDefinition getObjectBoxModel() {
           ..periodoRefeicao = const fb.StringReader(
             asciiOptimization: true,
           ).vTableGet(buffer, rootOffset, 10, '');
+        object.user.targetId = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          12,
+          0,
+        );
+        object.user.attach(store);
         obx_int.InternalToManyAccess.setRelInfo<RefeicaoBox>(
           object.alimentoListaRefeicao,
           store,
@@ -334,6 +392,58 @@ obx_int.ModelDefinition getObjectBoxModel() {
         return object;
       },
     ),
+    UserBox: obx_int.EntityDefinition<UserBox>(
+      model: _entities[2],
+      toOneRelations: (UserBox object) => [],
+      toManyRelations: (UserBox object) => {
+        obx_int.RelInfo<RefeicaoBox>.toOneBacklink(
+          5,
+          object.id,
+          (RefeicaoBox srcObject) => srcObject.user,
+        ): object.refeicoes,
+      },
+      getId: (UserBox object) => object.id,
+      setId: (UserBox object, int id) {
+        object.id = id;
+      },
+      objectToFB: (UserBox object, fb.Builder fbb) {
+        final nomeOffset = fbb.writeString(object.nome);
+        fbb.startTable(5);
+        fbb.addInt64(0, object.id);
+        fbb.addOffset(1, nomeOffset);
+        fbb.addInt64(2, object.pin);
+        fbb.addBool(3, object.isLoggedIn);
+        fbb.finish(fbb.endTable());
+        return object.id;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+
+        final object = UserBox()
+          ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
+          ..nome = const fb.StringReader(
+            asciiOptimization: true,
+          ).vTableGet(buffer, rootOffset, 6, '')
+          ..pin = const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0)
+          ..isLoggedIn = const fb.BoolReader().vTableGet(
+            buffer,
+            rootOffset,
+            10,
+            false,
+          );
+        obx_int.InternalToManyAccess.setRelInfo<UserBox>(
+          object.refeicoes,
+          store,
+          obx_int.RelInfo<RefeicaoBox>.toOneBacklink(
+            5,
+            object.id,
+            (RefeicaoBox srcObject) => srcObject.user,
+          ),
+        );
+        return object;
+      },
+    ),
   };
 
   return obx_int.ModelDefinition(model, bindings);
@@ -359,6 +469,11 @@ class RefeicaoBox_ {
   /// See [RefeicaoBox.periodoRefeicao].
   static final periodoRefeicao = obx.QueryStringProperty<RefeicaoBox>(
     _entities[0].properties[3],
+  );
+
+  /// See [RefeicaoBox.user].
+  static final user = obx.QueryRelationToOne<RefeicaoBox, UserBox>(
+    _entities[0].properties[4],
   );
 
   /// see [RefeicaoBox.alimentoListaRefeicao]
@@ -411,5 +526,33 @@ class AlimentoBox_ {
   /// See [AlimentoBox.refeicao].
   static final refeicao = obx.QueryRelationToOne<AlimentoBox, RefeicaoBox>(
     _entities[1].properties[8],
+  );
+}
+
+/// [UserBox] entity fields to define ObjectBox queries.
+class UserBox_ {
+  /// See [UserBox.id].
+  static final id = obx.QueryIntegerProperty<UserBox>(
+    _entities[2].properties[0],
+  );
+
+  /// See [UserBox.nome].
+  static final nome = obx.QueryStringProperty<UserBox>(
+    _entities[2].properties[1],
+  );
+
+  /// See [UserBox.pin].
+  static final pin = obx.QueryIntegerProperty<UserBox>(
+    _entities[2].properties[2],
+  );
+
+  /// See [UserBox.isLoggedIn].
+  static final isLoggedIn = obx.QueryBooleanProperty<UserBox>(
+    _entities[2].properties[3],
+  );
+
+  /// see [UserBox.refeicoes]
+  static final refeicoes = obx.QueryBacklinkToMany<RefeicaoBox, UserBox>(
+    RefeicaoBox_.user,
   );
 }
