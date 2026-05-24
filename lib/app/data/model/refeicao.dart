@@ -7,7 +7,7 @@ class Refeicao {
   DateTime dataRefeicao;
   List<Alimento> alimentoListaRefeicao;
   String periodoRefeicao;
-  User user;
+  User user = User(nome: "", pin: 0, refeicoes: [], isLoggedIn: false);
 
   Refeicao({
     this.id = 0,
@@ -15,6 +15,5 @@ class Refeicao {
     required this.dataRefeicao,
     required this.alimentoListaRefeicao,
     required this.periodoRefeicao,
-    required this.user,
   });
 }

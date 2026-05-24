@@ -7,7 +7,7 @@ import 'package:mydiet/app/data/repositories/refeicao_repository.dart';
 import 'package:mydiet/app/data/model/refeicao.dart';
 import 'package:provider/provider.dart';
 import 'configuracoes_page.dart';
-import 'perfil_page.dart';
+import 'userPages/perfil_page.dart';
 
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
