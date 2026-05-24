@@ -5,6 +5,7 @@ import 'package:mydiet/app/data/repositories/alimento_repository.dart';
 import 'package:mydiet/app/data/repositories/refeicao_repository.dart';
 import 'package:mydiet/app/widgets/alimento_card_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:mydiet/app/controllers/sessao_controller.dart';
 
 class AdicionarRefeicao extends StatefulWidget {
   const AdicionarRefeicao({super.key});
@@ -45,7 +46,7 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
           dataRefeicao: dataFinal,
           alimentoListaRefeicao: selecionados,
           periodoRefeicao: valorSelecionado.toString(),
-          //user:refeicaoRepository.getCurrentUser(), //como salvar o usuário logado? 
+          user: context.read<SessionController>()._usuarioAtual, //como salvar o usuário logado?
         ),
       );
 

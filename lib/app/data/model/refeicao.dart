@@ -15,5 +15,6 @@ class Refeicao {
     required this.dataRefeicao,
     required this.alimentoListaRefeicao,
     required this.periodoRefeicao,
+    required this.user,
   });
 }

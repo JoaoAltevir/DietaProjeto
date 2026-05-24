@@ -4,7 +4,6 @@ import 'package:mydiet/app/data/model/entitys/alimento.entity.dart';
 import 'package:mydiet/app/data/model/entitys/user.entity.dart';
 import 'package:mydiet/app/data/model/user.dart';
 
-
 @Entity()
 class RefeicaoBox {
   @Id()
