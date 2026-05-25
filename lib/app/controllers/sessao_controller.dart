@@ -38,6 +38,7 @@ class SessionController extends ChangeNotifier {
 
       _usuarioAtual = usuario;
       usuario.isLoggedIn = true;
+      userDatabase.updateUser(usuario);
       _isLoading = false;
       _errorMessage = null;
       notifyListeners();
@@ -94,6 +95,7 @@ class SessionController extends ChangeNotifier {
   void logout() {
     if (_usuarioAtual != null) {
       _usuarioAtual!.isLoggedIn = false;
+      _usuarioAtual!.updateUser(_usuarioAtual);
     }
     _usuarioAtual = null;
     _errorMessage = null;

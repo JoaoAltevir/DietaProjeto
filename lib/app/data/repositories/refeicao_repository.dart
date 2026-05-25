@@ -6,7 +6,7 @@ import 'package:mydiet/app/data/model/refeicao.dart';
 import 'package:mydiet/app/core/result.dart';
 import 'package:mydiet/app/data/services/refeicao_database.dart';
 
-class   RefeicaoRepository extends ChangeNotifier {
+class RefeicaoRepository extends ChangeNotifier {
   final RefeicaoDatabase database;
   final List<Refeicao> _listaRefeicoes = [];
   DateTime _dataSelecionada = DateTime.now();

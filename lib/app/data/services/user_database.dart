@@ -86,5 +86,13 @@ class UserDatabase {
       throw DatabaseException('Falha ao recuperar usuário por nome e PIN: $e');
     }
   }
+
+  void updateUser(User user){
+    try{
+        
+    }catch (e){
+
+    }
+  }
 }
 
