@@ -1,5 +1,3 @@
-/// Centraliza todas as validações de formulários de autenticação.
-/// Retorna `null` se válido, ou uma mensagem de erro descritiva.
 class AuthValidators {
   AuthValidators._();
  

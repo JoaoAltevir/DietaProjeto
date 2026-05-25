@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mydiet/app/data/model/alimento.dart';
 import 'package:mydiet/app/data/model/refeicao.dart';
-import 'package:mydiet/app/data/repositories/refeicao_repository.dart';
+import 'package:mydiet/app/data/controllers/refeicao_controller.dart';
 import 'package:mydiet/app/widgets/form_field_wiget.dart';
 import 'package:provider/provider.dart';
 

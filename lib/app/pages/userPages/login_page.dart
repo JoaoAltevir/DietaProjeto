@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
  
-import 'package:mydiet/app/controllers/sessao_controller.dart';
+import 'package:mydiet/app/data/controllers/sessao_controller.dart';
 import 'package:mydiet/app/pages/main_homepage.dart';
-import 'package:mydiet/app/controllers/auth_controller.dart';
+import 'package:mydiet/app/data/controllers/auth_controller.dart';
 import 'package:mydiet/app/widgets/auth_widgets.dart';
 import 'package:mydiet/app/pages/userPages/cadastro_page.dart';
 
  
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
  
   @override
   State<LoginPage> createState() => _LoginPageState();

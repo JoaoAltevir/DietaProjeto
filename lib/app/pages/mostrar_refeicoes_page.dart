@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar_week/flutter_calendar_week.dart';
 import 'package:mydiet/app/data/model/refeicao.dart';
-import 'package:mydiet/app/data/repositories/refeicao_repository.dart';
+import 'package:mydiet/app/data/controllers/refeicao_controller.dart';
 import 'package:mydiet/app/widgets/refeicao_card_widget.dart';
 import 'package:provider/provider.dart';
 

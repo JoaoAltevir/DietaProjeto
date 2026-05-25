@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mydiet/app/app.dart';
-import 'package:mydiet/app/data/repositories/alimento_repository.dart';
-import 'package:mydiet/app/data/repositories/refeicao_repository.dart';
+import 'package:mydiet/app/data/controllers/alimento_controller.dart';
+import 'package:mydiet/app/data/controllers/refeicao_controller.dart';
 import 'package:mydiet/app/theme/themecontroller.dart';
 import 'package:provider/provider.dart';
 import 'package:mydiet/app/data/objectbox_database.dart';
 import 'package:mydiet/app/data/services/alimento_database.dart';
 import 'package:mydiet/app/data/services/refeicao_database.dart';
 import 'package:mydiet/app/data/services/user_database.dart';
-import 'package:mydiet/app/controllers/sessao_controller.dart';
+import 'package:mydiet/app/data/controllers/sessao_controller.dart';
 
 
 void main() async {

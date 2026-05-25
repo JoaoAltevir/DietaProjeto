@@ -101,7 +101,7 @@
     },
     {
       "id": "6:6294384732562797505",
-      "lastPropertyId": "4:3897737452820094103",
+      "lastPropertyId": "5:5845984403606065436",
       "name": "UserBox",
       "properties": [
         {
@@ -124,6 +124,11 @@
           "id": "4:3897737452820094103",
           "name": "isLoggedIn",
           "type": 1
+        },
+        {
+          "id": "5:5845984403606065436",
+          "name": "username",
+          "type": 9
         }
       ],
       "relations": []

@@ -18,6 +18,7 @@ class UserBox{
 
   User fromBox() {
     return User(
+      id: id,
       nome: nome,
       username: username,
       pin: pin,

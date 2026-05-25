@@ -141,7 +141,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
     id: const obx_int.IdUid(6, 6294384732562797505),
     name: 'UserBox',
-    lastPropertyId: const obx_int.IdUid(4, 3897737452820094103),
+    lastPropertyId: const obx_int.IdUid(5, 5845984403606065436),
     flags: 0,
     properties: <obx_int.ModelProperty>[
       obx_int.ModelProperty(
@@ -166,6 +166,12 @@ final _entities = <obx_int.ModelEntity>[
         id: const obx_int.IdUid(4, 3897737452820094103),
         name: 'isLoggedIn',
         type: 1,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(5, 5845984403606065436),
+        name: 'username',
+        type: 9,
         flags: 0,
       ),
     ],
@@ -408,11 +414,13 @@ obx_int.ModelDefinition getObjectBoxModel() {
       },
       objectToFB: (UserBox object, fb.Builder fbb) {
         final nomeOffset = fbb.writeString(object.nome);
-        fbb.startTable(5);
+        final usernameOffset = fbb.writeString(object.username);
+        fbb.startTable(6);
         fbb.addInt64(0, object.id);
         fbb.addOffset(1, nomeOffset);
         fbb.addInt64(2, object.pin);
         fbb.addBool(3, object.isLoggedIn);
+        fbb.addOffset(4, usernameOffset);
         fbb.finish(fbb.endTable());
         return object.id;
       },
@@ -431,7 +439,10 @@ obx_int.ModelDefinition getObjectBoxModel() {
             rootOffset,
             10,
             false,
-          );
+          )
+          ..username = const fb.StringReader(
+            asciiOptimization: true,
+          ).vTableGet(buffer, rootOffset, 12, '');
         obx_int.InternalToManyAccess.setRelInfo<UserBox>(
           object.refeicoes,
           store,
@@ -549,6 +560,11 @@ class UserBox_ {
   /// See [UserBox.isLoggedIn].
   static final isLoggedIn = obx.QueryBooleanProperty<UserBox>(
     _entities[2].properties[3],
+  );
+
+  /// See [UserBox.username].
+  static final username = obx.QueryStringProperty<UserBox>(
+    _entities[2].properties[4],
   );
 
   /// see [UserBox.refeicoes]

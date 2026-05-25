@@ -2,6 +2,7 @@ import 'package:mydiet/app/data/model/refeicao.dart';
 
 class User {  
   
+  int id;
   String nome;
   String username;
   int pin;
@@ -9,6 +10,7 @@ class User {
   bool isLoggedIn;
 
   User({
+    this.id = 0,
     required this.nome,
     required this.username,
     required this.pin,

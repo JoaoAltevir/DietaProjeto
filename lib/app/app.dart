@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mydiet/app/controllers/sessao_controller.dart';
+import 'package:mydiet/app/data/controllers/sessao_controller.dart';
 import 'package:mydiet/app/theme/themecontroller.dart';
 import 'package:provider/provider.dart';
 import 'package:mydiet/app/pages/userPages/cadastro_page.dart';
@@ -11,8 +11,6 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeController = context.watch<ThemeController>();
-    
-
 
     return MaterialApp(
       title: 'MyDiet',
@@ -27,11 +25,18 @@ class App extends StatelessWidget {
       ),
       home: Consumer<SessionController>(
         builder: (context, sessionController, _) {
-          // Se usuário está logado, mostrar app principal
-          // Se não, mostrar página de cadastro/login
-          return sessionController.isLoggedIn 
-            ? MainHome()
-            : CadastroPage();
+          // 🆕 Mostrar splash screen enquanto carrega a sessão
+          if (sessionController.isLoading) {
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+          if (sessionController.isLoggedIn) {
+            return const MainHome();
+          }
+          return const CadastroPage();
         },
       ),
     );
