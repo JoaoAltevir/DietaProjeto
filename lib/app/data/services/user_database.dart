@@ -25,14 +25,14 @@ class UserDatabase {
         throw DatabaseException('Nome de usuário já está em uso');
       }
 
-      // Cria a entidade do ObjectBox
+     
       final userBox = UserBox()
         ..nome = user.nome
         ..username = user.username
         ..pin = user.pin
         ..isLoggedIn = user.isLoggedIn;
 
-      // Salva no banco (ObjectBox gera o ID automaticamente)
+      
       objectBoxDatabase.store.box<UserBox>().put(userBox);
     } catch (e) {
       throw DatabaseException('Falha ao criar usuário: $e');
@@ -49,7 +49,7 @@ class UserDatabase {
   User? findById(int id) {
     try {
       final userBox = objectBoxDatabase.store.box<UserBox>().get(id);
-      return userBox?.fromBox();  // 🔴 Retorna null se não encontrar
+      return userBox?.fromBox(); 
     } catch (e) {
       throw DatabaseException('Falha ao recuperar usuário: $e');
     }
@@ -66,8 +66,6 @@ class UserDatabase {
       throw DatabaseException('Falha ao recuperar usuário por username: $e');
     }
   }
-
-  /// ✅ DELETA usuário por ID
   void deleteUser(int id) {
     try {
       final userDelete = objectBoxDatabase.store.box<UserBox>().get(id);
@@ -80,11 +78,6 @@ class UserDatabase {
       throw DatabaseException('Falha ao excluir usuário: $e');
     }
   }
-
-  /// ✅ ATUALIZA usuário existente
-  /// 
-  /// Nota: Usa o ID do usuário para encontrá-lo no banco
-  /// Por isso é CRÍTICO que o ID esteja correto (veja user.entity.dart)
   void updateUser(User user) {
     try {
       final userBox = objectBoxDatabase.store.box<UserBox>().get(user.id);
