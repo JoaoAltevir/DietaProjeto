@@ -26,7 +26,7 @@ class RefeicaoBox {
       dataRefeicao: dataRefeicao ?? DateTime.now(),
       alimentoListaRefeicao: alimentoListaRefeicao.map((alimentoBox) => alimentoBox.fromBox()).toList(),
       periodoRefeicao: periodoRefeicao,
-      user: user.target?.fromBox() ?? User(nome: "", pin: 0, refeicoes: [], isLoggedIn: false),
+      user: user.target?.fromBox() ?? User(nome: "", username: "", pin: 0, refeicoes: [], isLoggedIn: false),
     );
   }
 }

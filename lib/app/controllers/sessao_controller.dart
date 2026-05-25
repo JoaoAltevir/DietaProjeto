@@ -16,31 +16,31 @@ class SessionController extends ChangeNotifier {
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
 
-  Future<bool> login(String nome, int pin) async {
+  Future<bool> login(String username, int pin) async {
     _isLoading = true;
     _errorMessage = null;
     notifyListeners();
     try {
       final usuarios = userDatabase.findAllUsers();
       final usuario = usuarios.firstWhere(
-        (u) => u.nome == nome && u.pin == pin,
-        orElse: () => User(nome: '', pin: 0),
+        (u) => u.username == username && u.pin == pin,
+        orElse: () => User(nome: '', username: '', pin: 0, refeicoes: [], isLoggedIn: false),
       );
 
-      if (usuario.nome.isEmpty) {
+      if (usuario.username.isEmpty) {
         _errorMessage = 'Usuário ou PIN incorretos';
         _isLoading = false;
         notifyListeners();
         return false;
       }
 
-      // Setar usuário como logado
       _usuarioAtual = usuario;
       usuario.isLoggedIn = true;
       _isLoading = false;
       _errorMessage = null;
       notifyListeners();
       return true;
+      
     } catch (e) {
       _errorMessage = 'Erro ao fazer login: $e';
       _isLoading = false;
@@ -49,7 +49,6 @@ class SessionController extends ChangeNotifier {
     }
   }
 
-  /// Registrar novo usuário
   Future<bool> registrar(String nome, String nomeUsuario, int pin) async {
     _isLoading = true;
     _errorMessage = null;
@@ -65,6 +64,7 @@ class SessionController extends ChangeNotifier {
 
       final novoUsuario = User(
         nome: nomeUsuario,
+        username: nomeUsuario,
         pin: pin,
         isLoggedIn: true,
       );

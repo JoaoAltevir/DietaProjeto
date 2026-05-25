@@ -1,56 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
+ 
 import 'package:mydiet/app/controllers/sessao_controller.dart';
 import 'package:mydiet/app/pages/main_homepage.dart';
 import 'package:mydiet/app/controllers/auth_controller.dart';
 import 'package:mydiet/app/widgets/auth_widgets.dart';
+import 'package:mydiet/app/pages/userPages/cadastro_page.dart';
 
-
-class CadastroPage extends StatefulWidget {
-  
-  const CadastroPage({Key? key}) : super(key: key);
-
+ 
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+ 
   @override
-  State<CadastroPage> createState() => _CadastroPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
-
-class _CadastroPageState extends State<CadastroPage> {
+ 
+class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _nomeController = TextEditingController();
-  final _nomeUsuarioController = TextEditingController();
   final _pinController = TextEditingController();
-
+ 
   @override
   void dispose() {
     _nomeController.dispose();
-    _nomeUsuarioController.dispose();
     _pinController.dispose();
     super.dispose();
   }
-
+ 
   Future<void> _submit(SessionController sessionController) async {
     if (!(_formKey.currentState?.validate() ?? false)) return;
-
+ 
     final nome = _nomeController.text.trim();
-    final nomeUsuario = _nomeUsuarioController.text.trim();
     final pin = int.parse(_pinController.text);
-
-    final success = await sessionController.registrar(nome, nomeUsuario, pin);
-
+ 
+    final success = await sessionController.login(nome, pin);
+ 
     if (!mounted) return;
-
+ 
     if (success) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const MainHome()),
       );
     } else {
-      _showError(sessionController.errorMessage ?? 'Erro ao registrar');
+      _showError(sessionController.errorMessage ?? 'Erro ao fazer login');
     }
   }
-
+ 
   void _showError(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -59,13 +56,20 @@ class _CadastroPageState extends State<CadastroPage> {
       ),
     );
   }
-
+ 
+  void _navigateToRegister() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => CadastroPage()),
+    );
+  }
+ 
   @override
   Widget build(BuildContext context) {
     return Consumer<SessionController>(
       builder: (context, sessionController, _) {
         return Scaffold(
-          appBar: AppBar(title: const Text('Criar Conta')),
+          appBar: AppBar(title: const Text('Login')),
           body: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Center(
@@ -78,18 +82,10 @@ class _CadastroPageState extends State<CadastroPage> {
                       children: [
                         AuthTextField(
                           controller: _nomeController,
-                          label: 'Nome Completo',
+                          label: 'Nome de usuário',
                           enabled: !sessionController.isLoading,
                           prefixIcon: Icons.person_outline,
                           validator: AuthValidators.validateNome,
-                        ),
-                        const SizedBox(height: 16),
-                        AuthTextField(
-                          controller: _nomeUsuarioController,
-                          label: 'Nome de Usuário',
-                          enabled: !sessionController.isLoading,
-                          prefixIcon: Icons.alternate_email,
-                          validator: AuthValidators.validateNomeUsuario,
                         ),
                         const SizedBox(height: 16),
                         AuthTextField(
@@ -106,7 +102,7 @@ class _CadastroPageState extends State<CadastroPage> {
                         ),
                         const SizedBox(height: 32),
                         AuthPrimaryButton(
-                          label: 'Criar Conta',
+                          label: 'Entrar',
                           isLoading: sessionController.isLoading,
                           onPressed: () => _submit(sessionController),
                         ),
@@ -114,8 +110,8 @@ class _CadastroPageState extends State<CadastroPage> {
                         TextButton(
                           onPressed: sessionController.isLoading
                               ? null
-                              : () => Navigator.pop(context),
-                          child: const Text('Já tem conta? Faça login'),
+                              : _navigateToRegister,
+                          child: const Text('Não tem conta? Registre-se'),
                         ),
                       ],
                     ),

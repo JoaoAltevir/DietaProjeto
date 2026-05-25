@@ -7,7 +7,7 @@ class Refeicao {
   DateTime dataRefeicao;
   List<Alimento> alimentoListaRefeicao;
   String periodoRefeicao;
-  User user = User(nome: "", pin: 0, refeicoes: [], isLoggedIn: false);
+  User? user;
 
   Refeicao({
     this.id = 0,

@@ -46,7 +46,7 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
           dataRefeicao: dataFinal,
           alimentoListaRefeicao: selecionados,
           periodoRefeicao: valorSelecionado.toString(),
-          user: context.read<SessionController>()._usuarioAtual, //como salvar o usuário logado?
+          user: context.read<SessionController>().usuarioAtual, //como salvar o usuário logado?
         ),
       );
 

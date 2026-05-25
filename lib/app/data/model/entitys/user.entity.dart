@@ -8,6 +8,7 @@ class UserBox{
   @Id()
   int id = 0;
   String nome = "";
+  String username = "";
   int pin = 0;
 
   @Backlink('user')
@@ -18,6 +19,7 @@ class UserBox{
   User fromBox() {
     return User(
       nome: nome,
+      username: username,
       pin: pin,
       refeicoes: refeicoes.map((refeicaoBox) => refeicaoBox.fromBox()).toList(),
       isLoggedIn: isLoggedIn,
