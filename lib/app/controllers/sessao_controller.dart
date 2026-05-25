@@ -9,7 +9,9 @@ class SessionController extends ChangeNotifier {
   bool _isLoading = false;
   String? _errorMessage;
 
-  SessionController({required this.userDatabase});
+  SessionController({required this.userDatabase}){
+    _verificarUserLogged();
+  }
 
   User? get usuarioAtual => _usuarioAtual;
   bool get isLoggedIn => _usuarioAtual != null;
@@ -95,6 +97,20 @@ class SessionController extends ChangeNotifier {
     }
     _usuarioAtual = null;
     _errorMessage = null;
+    notifyListeners();
+  }
+
+  void _verificarUserLogged(){
+    _isLoading = true;
+    final usuarios = userDatabase.findAllUsers();
+    for(var usuario in usuarios){
+      if(usuario.isLoggedIn == true){
+        _usuarioAtual = usuario;
+        break;
+      }
+    }
+    
+    _isLoading = false;
     notifyListeners();
   }
 

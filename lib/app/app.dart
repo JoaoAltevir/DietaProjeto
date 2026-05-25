@@ -12,6 +12,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeController = context.watch<ThemeController>();
     
+
+
     return MaterialApp(
       title: 'MyDiet',
       debugShowCheckedModeBanner: false,
