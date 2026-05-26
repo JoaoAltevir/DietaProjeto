@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mydiet/app/model/alimento.dart';
-import 'package:mydiet/app/model/refeicao.dart';
-import 'package:mydiet/app/repositories/alimento_repository.dart';
-import 'package:mydiet/app/repositories/refeicao_repository.dart';
+import 'package:mydiet/app/data/model/alimento.dart';
+import 'package:mydiet/app/data/model/refeicao.dart';
+import 'package:mydiet/app/data/controllers/alimento_controller.dart';
+import 'package:mydiet/app/data/controllers/refeicao_controller.dart';
 import 'package:mydiet/app/widgets/alimento_card_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:mydiet/app/data/controllers/sessao_controller.dart';
 
 class AdicionarRefeicao extends StatefulWidget {
   const AdicionarRefeicao({super.key});
@@ -14,7 +15,6 @@ class AdicionarRefeicao extends StatefulWidget {
 }
 
 class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
-  late AlimentoRepository alimentosTabela;
   DateTime? _dataSelecionada;
   TimeOfDay? _horaSelecionada;
   String? valorSelecionado;
@@ -46,8 +46,13 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
           dataRefeicao: dataFinal,
           alimentoListaRefeicao: selecionados,
           periodoRefeicao: valorSelecionado.toString(),
+          user: context.read<SessionController>().usuarioAtual, //como salvar o usuário logado?
         ),
       );
+
+      
+
+     
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -70,6 +75,29 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
       }
     }
   }
+
+    void excluirAlimento() {
+        final alimentoRepository = context.read<AlimentoRepository>();
+        if(selecionados.length == 1){
+          alimentoRepository.remove(selecionados.first);
+        } else {
+          alimentoRepository.removeList(selecionados);
+        }
+       // for (var alimento in selecionados) {
+         // alimentoRepository.remove(alimento);
+        //}
+        setState(() {
+          selecionados.clear();
+        });
+
+        ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Alimento excluido com sucesso!'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      Navigator.pop(context);
+      }
 
   Future<void> _selecionarData() async {
     final data = await showDatePicker(
@@ -107,7 +135,6 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
 
   @override
   Widget build(BuildContext context) {
-    alimentosTabela = Provider.of<AlimentoRepository>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Criar Refeicao'),
@@ -286,7 +313,8 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
                     Expanded(
                       child: Consumer<AlimentoRepository>(
                         builder: (context, alimentosTabela, child) {
-                          return alimentosTabela.listaAlimentos.isEmpty
+                          final alimentos = alimentosTabela.listaAlimentos;
+                          return alimentos.isEmpty
                               ? Center(
                                   child: Text(
                                     'Nenhum alimento encontrado.\nCrie antes de adicionar uma refeição!',
@@ -295,10 +323,10 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
                                 )
                               : ListView.builder(
                                   itemCount:
-                                      alimentosTabela.listaAlimentos.length,
+                                      alimentos.length,
                                   itemBuilder: (_, index) {
                                     final alimento =
-                                        alimentosTabela.listaAlimentos[index];
+                                        alimentos[index];
 
                                     final selecionado = selecionados.contains(
                                       alimento,
@@ -330,11 +358,20 @@ class _AdicionarRefeicaoState extends State<AdicionarRefeicao> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: criarRefeicao,
-        child: Icon(Icons.add),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        spacing: 16,
+        children: [
+          FloatingActionButton(
+            onPressed: excluirAlimento,
+            child: Icon(Icons.delete),
+          ),
+          FloatingActionButton(
+            onPressed: criarRefeicao,
+            child: Icon(Icons.add),
+          ),
+        ]
+      )
     );
   }
 }

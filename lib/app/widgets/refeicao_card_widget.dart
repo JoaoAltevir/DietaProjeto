@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mydiet/app/model/alimento.dart';
-import 'package:mydiet/app/model/refeicao.dart';
-import 'package:mydiet/app/repositories/refeicao_repository.dart';
+import 'package:mydiet/app/data/model/alimento.dart';
+import 'package:mydiet/app/data/model/refeicao.dart';
+import 'package:mydiet/app/data/controllers/refeicao_controller.dart';
 import 'package:mydiet/app/widgets/form_field_wiget.dart';
 import 'package:provider/provider.dart';
 
@@ -57,10 +57,10 @@ class _RefeicaoCardState extends State<RefeicaoCard> {
       alimento,
     );
     ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Alimento ${alimento.nome} foi deletado!'),
-          backgroundColor: Colors.blueGrey,
-        ),
+      SnackBar(
+        content: Text('Alimento ${alimento.nome} foi deletado!'),
+        backgroundColor: Colors.blueGrey,
+      ),
     );
     Navigator.pop(context);
   }
@@ -87,7 +87,7 @@ class _RefeicaoCardState extends State<RefeicaoCard> {
         subtitle: Text(
           "Total de calorias: ${totalCalorias.toStringAsFixed(0)} kcal\n Horário: ${widget.refeicao.dataRefeicao.hour}h:${widget.refeicao.dataRefeicao.minute}min ",
         ),
-    
+
         children: widget.refeicao.alimentoListaRefeicao.map((alimento) {
           return ListTile(
             title: Text(
@@ -129,9 +129,9 @@ class _RefeicaoCardState extends State<RefeicaoCard> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-    
+
                             SizedBox(height: 16),
-    
+
                             CampoTexto(
                               controller: _nomeAlimento,
                               label: 'Nome do alimento',
@@ -139,50 +139,50 @@ class _RefeicaoCardState extends State<RefeicaoCard> {
                               erroVazio: "Digite o nome do alimento",
                               apenasNumeros: false,
                             ),
-    
+
                             CampoTexto(
                               controller: _unidadeMedida,
                               label: "Unidade de medida",
                               erroVazio: "Digite a unidade de medida",
                               apenasNumeros: false,
                             ),
-    
+
                             CampoTexto(
                               controller: _valorCota,
                               label: "Valor da cota",
                               apenasNumeros: true,
                             ),
-    
+
                             CampoTexto(
                               controller: _qntdCalorias,
                               label: "Calorias",
                               textoSufixo: "Kcal",
                               apenasNumeros: true,
                             ),
-    
+
                             CampoTexto(
                               controller: _qntdCarboidrato,
                               label: "Carboidratos",
                               textoSufixo: "g",
                               apenasNumeros: true,
                             ),
-    
+
                             CampoTexto(
                               controller: _qntdGordura,
                               label: "Gordura",
                               textoSufixo: "g",
                               apenasNumeros: true,
                             ),
-    
+
                             CampoTexto(
                               controller: _qntdProteina,
                               label: "Proteína",
                               textoSufixo: "g",
                               apenasNumeros: true,
                             ),
-    
+
                             SizedBox(height: 20),
-    
+
                             // BOTÕES
                             Row(
                               children: [
@@ -196,7 +196,7 @@ class _RefeicaoCardState extends State<RefeicaoCard> {
                                     ),
                                     child: Text("Deletar"),
                                   ),
-                                ),    
+                                ),
                                 SizedBox(width: 10),
                                 Expanded(
                                   child: ElevatedButton(
@@ -204,7 +204,8 @@ class _RefeicaoCardState extends State<RefeicaoCard> {
                                       salvarMudancas(alimento);
                                     },
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.blueAccent),
+                                      backgroundColor: Colors.blueAccent,
+                                    ),
                                     child: Text("Salvar"),
                                   ),
                                 ),
