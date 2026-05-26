@@ -7,7 +7,6 @@ class DatabaseException implements Exception {
   DatabaseException(this.message);
 }
 
-//falta implementar outras funções e alterar a parte do repository...
 class FoodDatabase{
   final ObjectBoxDatabase objectBoxDatabase;
 

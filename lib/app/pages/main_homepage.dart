@@ -3,11 +3,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mydiet/app/pages/adicionar_alimento_page.dart';
 import 'package:mydiet/app/pages/adicionar_refeicao_page.dart';
 import 'package:mydiet/app/pages/mostrar_refeicoes_page.dart';
-import 'package:mydiet/app/data/repositories/refeicao_repository.dart';
+import 'package:mydiet/app/data/controllers/refeicao_controller.dart';
 import 'package:mydiet/app/data/model/refeicao.dart';
 import 'package:provider/provider.dart';
 import 'configuracoes_page.dart';
-import 'perfil_page.dart';
+import 'userPages/perfil_page.dart';
 
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
